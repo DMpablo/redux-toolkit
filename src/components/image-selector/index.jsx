@@ -28,6 +28,7 @@ const ImageSelector = ({ onImage }) => {
         quality:0.5
       })
       setPickedUrl(image.uri)
+      onImage(image.uri)
   }
 
   return (
