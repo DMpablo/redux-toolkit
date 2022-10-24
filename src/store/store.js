@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import messageReducer from './message.slice'
+import placeReducer from './place.slice'
 
 const store = configureStore({
-  reducer: { message: messageReducer },
+  reducer: { 
+    place: placeReducer
+   },
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck:false,
+   })
 });
 
 export default store;
