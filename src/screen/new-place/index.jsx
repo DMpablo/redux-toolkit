@@ -18,6 +18,7 @@ const NewPlace = ({ navigation }) => {
   };
 
   const onHandleSubmit = () => {
+    console.warn('location: ',location);
     dispatch(savePlace(title, image, location));
     navigation.navigate("Places");
   };
@@ -41,7 +42,7 @@ const NewPlace = ({ navigation }) => {
           value={title}
         />
         <ImageSelector onImage={onHandleImageSelect} />
-        {/* <LocationSelector onLocation={onHandleLocationSelect} /> */}
+        <LocationSelector onLocation={onHandleLocationSelect} />
         <Button title="Grabar dirección" color={colors.primary} onPress={onHandleSubmit} />
       </View>
     </ScrollView>
