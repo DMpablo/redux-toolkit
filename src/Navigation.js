@@ -8,8 +8,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 
 //screens
 import { HomeScreen } from "./screen/homeScreen";
-import { SettingScreen } from "./screen/settingScreen";
-import { StackScreen } from "./screen/stackScreen";
+import { OrderDetail } from "./components";
 
 
 const HomeStackNavigator = createNativeStackNavigator();
@@ -21,11 +20,13 @@ function MyStack() {
       <HomeStackNavigator.Screen 
         name="HomeScreen" 
         component={HomeScreen} 
-      
+      options={
+        {name:'hola'}
+      }
         />
       <HomeStackNavigator.Screen
-        name="Stack"
-        component={StackScreen}
+        name="Detalle"
+        component={OrderDetail}
         options={{ 
           headerBackTitleVisible: false,
         
@@ -35,45 +36,11 @@ function MyStack() {
   );
 }
 
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: "purple",
-      }}
-    >
-      <Tab.Screen
-        name="Homle"
-        component={MyStack}
-        options={{
-          tabBarLabel: "feed",
-          tabBarBadge: 2,
-          headerShown:false,
-          tabBarIcon: ({color, size})=>(
-            <SimpleLineIcons name="home" color={color} size={30} />
-          )
-        }}
-      />
-      <Tab.Screen 
-        name="Settings" 
-        component={SettingScreen} 
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <SimpleLineIcons name='settings' color={color} size={30} />
-          )
-        }}
-
-        />
-    </Tab.Navigator>
-  );
-}
-
 export default function Navigation() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MyTabs />
+        <MyStack />
       </NavigationContainer>
     </Provider>
   );
