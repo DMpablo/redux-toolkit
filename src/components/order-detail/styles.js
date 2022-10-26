@@ -14,4 +14,11 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
   },
+  picker: { width: "60%", margin: 20, backgroundColor: "gray", color: "white" },
+  itemStyle: {
+    backgroundColor: "gray",
+    color: "white",
+    fontFamily: "Ebrima",
+    fontSize: 17,
+  },
 });
