@@ -1,23 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import date from "../utils.js";
 
-const padTo2Digits = (num) => {
-  return num.toString().padStart(2, '0');
-}
-
-const formatDate = (date) => {
-  return [
-    padTo2Digits(date.getDate()),
-    padTo2Digits(date.getMonth() + 1),
-    date.getFullYear(),
-  ].join('/');
-}
 
 const initialState = [
   {
     id: "1",
     company: "Manuchar",
     description: "200t de codigo",
-    date: formatDate(new Date()),
+    date: date(),
     typebag:'',
     cantbag:'',
     operators:'',
@@ -28,7 +18,7 @@ const initialState = [
     id: "2",
     company: "Parana",
     description: "200t urea",
-    date: formatDate(new Date()),
+    date: date(),
     typebag:'',
     cantbag:'',
     operators:'',
@@ -39,7 +29,7 @@ const initialState = [
     id: "3",
     company: "San Nicolas",
     description: "200t de codigo",
-    date: formatDate(new Date()),
+    date: date(),
     typebag:'',
     cantbag:'',
     operators:'',
@@ -50,7 +40,7 @@ const initialState = [
     id: "4",
     company: "Uruguay",
     description: "200t de codigo",
-    date: formatDate(new Date()),
+    date: date(),
     typebag:'',
     cantbag:'',
     operators:'',
@@ -61,7 +51,7 @@ const initialState = [
     id: "5",
     company: "pepe",
     description: "200t de codigo",
-    date: formatDate(new Date()),
+    date: date(),
     typebag:'',
     cantbag:'',
     operators:'',
@@ -72,9 +62,25 @@ const initialState = [
 
 const ordersSlice = createSlice({
   name: "orders",
-  initialState,
+  initialState: {
+    list: initialState,
+  },
   reducers: {
+    editOrder: (state, action) => {
+      const id = action.payload.id;
+      state.list = [action.payload]
+
+      console.warn(action.payload);
+    //   const newPlace = new Place(
+    //     date(),
+    //     action.payload.title,
+    //     action.payload.image,
+    //     action.payload.address
+    //   );
+    //   state.places.push(newPlace);
+    },
   },
 });
+export const { editOrder } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

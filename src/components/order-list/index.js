@@ -5,11 +5,14 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 
 const OrderList = () => {
-  const ord = useSelector((state) => state.orders);
+  const ord = useSelector((state) => state.orders.list);
   const navigation = useNavigation();
-
+  console.warn(ord);
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.container_detail} onPress={() => navigation.navigate("Detalle",{item})}>
+    <TouchableOpacity
+      style={styles.container_detail}
+      onPress={() => navigation.navigate("Detalle", { item })}
+    >
       <Text>{item.company}</Text>
       <Text>{item.description}</Text>
       <Text>{item.date}</Text>
@@ -24,7 +27,7 @@ const OrderList = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-    {/*   <TouchableOpacity
+      {/*   <TouchableOpacity
         style={styles.touch}
         onPress={() => navigation.navigate("Stack")}
       >

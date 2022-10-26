@@ -3,24 +3,33 @@ import { View, Text, Button } from "react-native";
 import { styles } from "./styles";
 import Checkbox from "expo-checkbox";
 import { Picker } from "@react-native-picker/picker";
+import CompleteOrder from "../../model";
+import date from "../../utils.js";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { editOrder } from "../../store/orders.slice";
 
 const OrderDetail = ({ route }) => {
   const [isChecked, setChecked] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { item } = route.params;
+  const dispatch = useDispatch();
+
+  const ord = useSelector((state) => state.orders);
+
 
   const pickerRef = useRef();
-
   function open() {
     pickerRef.current.focus();
   }
-
   function close() {
     pickerRef.current.blur();
   }
 
   const handleSubmit =()=>{
-    console.warn('submited')
+    dispatch(editOrder(item));
+    // const model = new CompleteOrder('1234', 'manuchar','descripcion', date() )
+    // console.warn(ord)
   }
 
   return (
