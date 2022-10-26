@@ -35,9 +35,9 @@ const OrderDetail = ({ route }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.container}>Cargar orden</Text>
-      <Text>{item.company}</Text>
-      <Text>{item.description}</Text>
-      <Text>{item.date}</Text>
+      <Text>{item.id}</Text>
+      <Text>{item.last_name}</Text>
+      <Text>{item.first_name}</Text>
       <Checkbox
         style={styles.checkbox}
         value={isChecked}

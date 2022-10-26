@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
+import { fetchAll } from '../../connect/index';
 
-const OrderList = () => {
+const OrderList = ()  => {
   const ord = useSelector((state) => state.orders.list);
   const navigation = useNavigation();
-  console.warn(ord);
+  const dispatch = useDispatch();
+  
+
+  useEffect(() => {
+    dispatch(fetchAll());
+  }, [dispatch])
+  
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.container_detail}
       onPress={() => navigation.navigate("Detalle", { item })}
     >
-      <Text>{item.company}</Text>
-      <Text>{item.description}</Text>
-      <Text>{item.date}</Text>
+      <Text>{item.id}</Text>
+      <Text>{item.last_name}</Text>
+      <Text>{item.first_name}</Text>
     </TouchableOpacity>
   );
 
@@ -27,14 +34,9 @@ const OrderList = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      {/*   <TouchableOpacity
-        style={styles.touch}
-        onPress={() => navigation.navigate("Stack")}
-      >
-        <Text style={styles.text}>go to Stack Screen</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
+
 
 export default OrderList;
