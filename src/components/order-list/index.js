@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
-import { fetchAll } from '../../connect/index';
+import { fetchAll } from "../../connect/index";
 
-const OrderList = ()  => {
+const OrderList = () => {
   const ord = useSelector((state) => state.orders.list);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(fetchAll());
-  }, [dispatch])
-  
+  }, [dispatch]);
+
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={styles.container_detail}
+      style={styles.TouchableOpacity}
       onPress={() => navigation.navigate("Detalle", { item })}
     >
       <Text>{item.id}</Text>
@@ -28,8 +27,9 @@ const OrderList = ()  => {
 
   return (
     <View style={styles.container}>
-      <Text>Lista de ordenes</Text>
+      <Text style={styles.title}>Nuevas solicitudes</Text>
       <FlatList
+        style={styles.container_flat}
         data={ord}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -37,6 +37,5 @@ const OrderList = ()  => {
     </View>
   );
 };
-
 
 export default OrderList;

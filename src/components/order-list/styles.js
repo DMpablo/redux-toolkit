@@ -5,21 +5,28 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    width:'100%',
+    width: "100%",
     marginTop: 20,
   },
-  container_detail: {
+  title: {
+    fontSize: 20,
+  },
+  TouchableOpacity: {
     flex: 1,
-    width:'100%',
+    width: "100%",
     marginTop: 20,
-    padding:10,
-    borderWidth:1,
+    padding: 10,
+    borderWidth: 2,
     borderRadius: 10,
-
+    backgroundColor:'#AFE3C0',
+  },
+  container_flat:{
+    width: "100%",
+    padding: 10,
   },
   touch: {
-    backgroundColor: "purple",
-    padding: 10,
+    // backgroundColor: "purple",
+    // padding: 10,
     marginTop: "20%",
     width: "50%",
     alsignSelf: "center",
