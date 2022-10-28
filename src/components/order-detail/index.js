@@ -8,15 +8,14 @@ import date from "../../utils.js";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { editOrder } from "../../store/orders.slice";
+import { boleano } from "./selects";
 
 const OrderDetail = ({ route }) => {
   const [isChecked, setChecked] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { item } = route.params;
   const dispatch = useDispatch();
-
-  const ord = useSelector((state) => state.orders);
-
+  // const ord = useSelector((state) => state.orders);
 
   const pickerRef = useRef();
   function open() {
@@ -26,24 +25,27 @@ const OrderDetail = ({ route }) => {
     pickerRef.current.blur();
   }
 
-  const handleSubmit =()=>{
+  const handleSubmit = () => {
     dispatch(editOrder(item));
     // const model = new CompleteOrder('1234', 'manuchar','descripcion', date() )
     // console.warn(ord)
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.container}>Cargar orden</Text>
+      <Text style={styles.title}>Cargar orden</Text>
       <Text>{item.id}</Text>
       <Text>{item.last_name}</Text>
       <Text>{item.first_name}</Text>
-      <Checkbox
-        style={styles.checkbox}
-        value={isChecked}
-        onValueChange={setChecked}
-        color={isChecked ? "#4630EB" : undefined}
-      />
+      <View style={styles.container_check}>
+        <Text>confirmar</Text>
+        <Checkbox
+          style={styles.checkbox}
+          value={isChecked}
+          onValueChange={setChecked}
+          color={isChecked ? "#4630EB" : undefined}
+        />
+      </View>
       <Picker
         ref={pickerRef}
         selectedValue={selectedLanguage}
@@ -51,12 +53,18 @@ const OrderDetail = ({ route }) => {
         style={styles.picker}
         itemStyle={styles.itemStyle}
       >
-        <Picker.Item style={styles.itemStyle} label="Java" value="java" />
-        <Picker.Item style={styles.itemStyle} label="JavaScript" value="js" />
+        {boleano
+          ? boleano.map((item) => (
+              <Picker.Item
+                style={styles.itemStyle}
+                label={item.label}
+                value={item.value}
+              />
+            ))
+          : ""}
       </Picker>
 
-      <Button title={'completar'} onPress={handleSubmit} />
-
+      <Button title={"completar"} onPress={handleSubmit} />
     </View>
   );
 };

@@ -9,6 +9,18 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     // backgroundColor:'gray'
   },
+  container_check:{
+    flexDirection:"row",
+    justifyContent: "space-between",
+    height:20,
+    width:'60%',
+    margin:20,
+    // backgroundColor:'purple',
+  },
+  title: {
+    fontSize: 25,
+  },
+
   text: {
     color: "gray",
     fontSize: 15,
